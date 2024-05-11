@@ -1,0 +1,107 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // -----------------
+    // Run Current File:
+    // -----------------
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Current File",
+      "runtimeExecutable": "node",
+      "autoAttachChildProcesses": true,
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+      "program": "${fileDirname}/${fileBasename}",
+      "smartStep": true,
+      "restart": true, // Try to reconnect to a program if we lose connection. If set to `true`, we'll try once every second, forever.
+      "outputCapture": "std", // This is to be able to also capture logger outputs
+      "sourceMaps": true,
+      "env": { "ENV_FILE": "${workspaceFolder}/envs/.env.development" },
+      "console": "integratedTerminal"
+    },
+    // -------
+    // backend
+    // -------
+    {
+      "name": "backend",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/backend/",
+      // "runtimeArgs": ["--watch"],
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+      "runtimeArgs": ["--config", "${workspaceFolder}/apps/backend/nodemon.json"], // <-- flags to add to the runtimeExecutable
+      "program": "src/index.js",
+      "restart": true, // Try to reconnect to a program if we lose connection. If set to `true`, we'll try once every second, forever.
+      "outputCapture": "std", // This is to be able to also capture logger outputs
+      "sourceMaps": true,
+      "env": { "ENV_FILE": "development" }
+    },
+    // -----------
+    // api-gateway
+    // -----------
+    {
+      "name": "api-gateway",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/api-gateway/",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+      "runtimeArgs": ["--config", "${workspaceFolder}/apps/api-gateway/nodemon.json"], // <-- flags to add to the runtimeExecutable
+      "program": "src/index.js",
+      "restart": true, // Try to reconnect to a program if we lose connection. If set to `true`, we'll try once every second, forever.
+      "outputCapture": "std", // This is to be able to also capture logger outputs
+      "sourceMaps": true,
+      "env": { "ENV_FILE": "development" }
+    },
+    // ------------
+    // user-service
+    // ------------
+    {
+      "name": "user-service",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/user-service/",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+      "runtimeArgs": ["--config", "${workspaceFolder}/apps/user-service/nodemon.json"],
+      "program": "src/index.js",
+      "restart": true,
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "env": { "NODE_ENV": "development" }
+    },
+    // ------------
+    // chat-service
+    // ------------
+    {
+      "name": "chat-service",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/chat-service/",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+      "runtimeArgs": ["--config", "${workspaceFolder}/apps/chat-service/nodemon.json"],
+      "program": "src/index.js",
+      "restart": true,
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "env": { "NODE_ENV": "development" }
+    },
+    // ---------------
+    // frontend-server
+    // ---------------
+    {
+      "name": "frontend-server",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/frontend-server/",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/nodemon",
+      "runtimeArgs": ["--config", "${workspaceFolder}/apps/frontend/nodemon.json"],
+      "program": "frontend-server.js",
+      "restart": true,
+      "outputCapture": "std",
+      "sourceMaps": true,
+      "env": { "NODE_ENV": "development" }
+    }
+  ]
+}
