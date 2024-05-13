@@ -1,15 +1,15 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request } from 'express';
-import { LoginDto, RegisterDto } from './dto/users.dto';
+import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getUsers(@Req() req: Request): Promise<string> {
-    const response = await this.usersService.getUsers(req);
+  async getUsers(@Query() query: GetUsersDto): Promise<string> {
+    const response = await this.usersService.getUsers(query);
 
     return response;
   }

@@ -7,3 +7,5 @@ export class RegisterDto {
   name: string;
   age: number;
 }
+
+export class GetUsersDto {}

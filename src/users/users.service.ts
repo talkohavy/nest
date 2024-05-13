@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
-import { LoginDto, RegisterDto } from './dto/users.dto';
+import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersService {
@@ -17,7 +17,8 @@ export class UsersService {
   }
 
   // eslint-disable-next-line
-  async getUsers(req: Request): Promise<string> {
+  async getUsers(query: GetUsersDto): Promise<string> {
+    console.log('query is:', query);
     return 'get users';
   }
 
