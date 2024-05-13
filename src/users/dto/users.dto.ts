@@ -9,3 +9,5 @@ export class RegisterDto {
 }
 
 export class GetUsersDto {}
+
+export class UpdateUserDto {}
