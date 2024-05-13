@@ -50,6 +50,8 @@
   // "editor.multiCursorModifier": "alt", // <--- defaults to "alt".
   // "editor.showUnused": true, // <--- defaults to "true". true value marks unreachable code as faded out.
   // "editor.wordWrap": "off", // <--- defaults to "off".
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // biomejs.biome or esbenp.prettier-vscode
   "[jsonc]": {
     "editor.quickSuggestions": { "strings": "on" },
     "editor.suggest.insertMode": "replace", // defaults to insert
@@ -181,11 +183,5 @@
   "explorer.autoRevealExclude": {
     "**/node_modules": false, // <--- open/reveal files in node_modules in explorer tree view.
     "**/bower_components": false
-  },
-
-  // ----------------------
-  // Part 14: mongodb Rules
-  // ----------------------
-  "mdb.confirmDeleteDocument": true,
-  "mdb.confirmRunAll": false
+  }
 }
