@@ -7,30 +7,29 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  getUsers(@Req() req: Request): string {
-    debugger;
-    const response = this.usersService.getUsers(req);
+  async getUsers(@Req() req: Request): Promise<string> {
+    const response = await this.usersService.getUsers(req);
 
     return response;
   }
 
   @Post('login')
-  login(@Req() req: Request): string {
-    const response = this.usersService.login(req);
+  async login(@Req() req: Request): Promise<string> {
+    const response = await this.usersService.login(req);
 
     return response;
   }
 
   @Post('register')
-  register(@Req() req: Request): string {
-    const response = this.usersService.login(req);
+  async register(@Req() req: Request): Promise<string> {
+    const response = await this.usersService.login(req);
 
     return response;
   }
 
   @Get(':id')
-  getUserById(@Req() req: Request): string {
-    const response = this.usersService.getUserById(req);
+  async getUserById(@Req() req: Request): Promise<string> {
+    const response = await this.usersService.getUserById(req);
 
     return response;
   }

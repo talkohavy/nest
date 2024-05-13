@@ -3,23 +3,23 @@ import { Request } from 'express';
 
 @Injectable()
 export class UsersService {
-  login(req: Request): string {
-    console.log('req is:', req);
+  // eslint-disable-next-line
+  async login(req: Request): Promise<string> {
     return 'trying to login...';
   }
 
-  register(req: Request): string {
-    console.log('req is:', req);
+  // eslint-disable-next-line
+  async register(req: Request): Promise<string> {
     return 'registered user successfully!';
   }
 
   // eslint-disable-next-line
-  getUsers(req: Request): string {
+  async getUsers(req: Request): Promise<string> {
     return 'get users';
   }
 
   // eslint-disable-next-line
-  getUserById(req: Request): string {
+  async getUserById(req: Request): Promise<string> {
     return 'get user by id';
   }
 }
