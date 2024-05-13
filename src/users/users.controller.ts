@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request } from 'express';
+import { LoginDto, RegisterDto } from './dto/users.dto';
 
 @Controller('users')
 export class UsersController {
@@ -14,15 +15,15 @@ export class UsersController {
   }
 
   @Post('login')
-  async login(@Req() req: Request): Promise<string> {
-    const response = await this.usersService.login(req);
+  async login(@Body() body: LoginDto): Promise<string> {
+    const response = await this.usersService.login(body);
 
     return response;
   }
 
   @Post('register')
-  async register(@Req() req: Request): Promise<string> {
-    const response = await this.usersService.login(req);
+  async register(@Body() body: RegisterDto): Promise<string> {
+    const response = await this.usersService.register(body);
 
     return response;
   }

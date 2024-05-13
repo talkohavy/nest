@@ -1,15 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { Request } from 'express';
+import { LoginDto, RegisterDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersService {
   // eslint-disable-next-line
-  async login(req: Request): Promise<string> {
-    return 'trying to login...';
+  async login(body: LoginDto): Promise<string> {
+    console.log('body is:', body);
+    return 'you are logged in!';
   }
 
   // eslint-disable-next-line
-  async register(req: Request): Promise<string> {
+  async register(body: RegisterDto): Promise<string> {
+    console.log('body is:', body);
     return 'registered user successfully!';
   }
 
