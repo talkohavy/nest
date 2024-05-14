@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -19,6 +21,14 @@ import {
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get('error')
+  async fetcherError() {
+    throw new HttpException(
+      'This is my forbidden message',
+      HttpStatus.FORBIDDEN,
+    );
+  }
 
   @Get()
   async getUsers(@Query() query: GetUsersDto): Promise<string> {
