@@ -1,8 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
 
+// type IRepository = {
+//   name: string;
+// };
+
 @Injectable()
 export class UsersService {
+  // constructor(private readonly database: IRepository) {}
+
   async login(body: LoginDto): Promise<string> {
     console.log('body is:', body);
     return 'you are logged in!';
