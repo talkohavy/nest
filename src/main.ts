@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './errorHandling/exception.filter';
 
 // import { loggerMiddleware } from './logger.middleware';
 
@@ -10,6 +11,7 @@ async function bootstrap() {
   });
 
   // app.use(loggerMiddleware); // <--- If we want to bind middleware to every registered route at once, we can use the use() method that is supplied by the INestApplication instance.
+  app.useGlobalFilters(new HttpExceptionFilter()); // <--- WARNING! The useGlobalFilters() method does not set up filters for gateways or hybrid applications.
 
   await app.listen(8000);
 }

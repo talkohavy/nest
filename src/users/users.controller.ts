@@ -5,7 +5,6 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  InternalServerErrorException,
   Param,
   Post,
   Put,
@@ -33,22 +32,9 @@ export class UsersController {
 
   @Get()
   async getUsers(@Query() query: GetUsersDto): Promise<string> {
-    try {
-      const response = await this.usersService.getUsers(query);
+    const response = await this.usersService.getUsers(query);
 
-      return response;
-    } catch (error) {
-      console.error(error);
-
-      throw new InternalServerErrorException('getUsers operation failed');
-      // throw new HttpException(
-      //   {
-      //     status: HttpStatus.INTERNAL_SERVER_ERROR,
-      //     error: 'There was an internal server error mate',
-      //   },
-      //   HttpStatus.FORBIDDEN,
-      // );
-    }
+    return response;
   }
 
   @Post('login')
