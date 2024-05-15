@@ -5,12 +5,12 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  InternalServerErrorException,
   Param,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
-import { InternalServerError } from '../errors';
 import {
   GetUsersDto,
   LoginDto,
@@ -40,7 +40,7 @@ export class UsersController {
     } catch (error) {
       console.error(error);
 
-      throw new InternalServerError('getUsers operation failed');
+      throw new InternalServerErrorException('getUsers operation failed');
       // throw new HttpException(
       //   {
       //     status: HttpStatus.INTERNAL_SERVER_ERROR,
