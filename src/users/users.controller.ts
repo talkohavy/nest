@@ -10,13 +10,14 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { InternalServerError } from '../errors';
 import {
   GetUsersDto,
   LoginDto,
   RegisterDto,
   UpdateUserDto,
 } from './dto/users.dto';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
@@ -32,9 +33,22 @@ export class UsersController {
 
   @Get()
   async getUsers(@Query() query: GetUsersDto): Promise<string> {
-    const response = await this.usersService.getUsers(query);
+    try {
+      const response = await this.usersService.getUsers(query);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.error(error);
+
+      throw new InternalServerError('getUsers operation failed');
+      // throw new HttpException(
+      //   {
+      //     status: HttpStatus.INTERNAL_SERVER_ERROR,
+      //     error: 'There was an internal server error mate',
+      //   },
+      //   HttpStatus.FORBIDDEN,
+      // );
+    }
   }
 
   @Post('login')
