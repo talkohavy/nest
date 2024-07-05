@@ -1,21 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpException,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
-import {
-  GetUsersDto,
-  LoginDto,
-  RegisterDto,
-  UpdateUserDto,
-} from './dto/users.dto';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
+import { GetUsersDto, LoginDto, RegisterDto, UpdateUserDto } from './dto/users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -24,10 +8,7 @@ export class UsersController {
 
   @Get('error')
   async fetcherError() {
-    throw new HttpException(
-      'This is my forbidden message',
-      HttpStatus.FORBIDDEN,
-    );
+    throw new HttpException('This is my forbidden message', HttpStatus.FORBIDDEN);
   }
 
   @Get()
@@ -59,10 +40,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  async updateUser(
-    @Param('id') id: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
+  async updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     console.log('updateUserDto is:', updateUserDto);
     return `This action updates a user of id ${id}`;
   }

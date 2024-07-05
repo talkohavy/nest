@@ -12,11 +12,7 @@ import { NextFunction, Request, Response } from 'express';
 // }
 
 // Option 2: functional middleware
-export function loggerMiddleware(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export function loggerMiddleware(req: Request, res: Response, next: NextFunction) {
   console.log('Request...');
   next();
 }

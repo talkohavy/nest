@@ -17,9 +17,7 @@ describe('UsersController', () => {
   describe('root', () => {
     it('should return "you are logged in!"', () => {
       // @ts-ignore
-      expect(usersController.login({ email: 'tal', password: '123' })).toBe(
-        'you are logged in!',
-      );
+      expect(usersController.login({ email: 'tal', password: '123' })).toBe('you are logged in!');
     });
   });
 });

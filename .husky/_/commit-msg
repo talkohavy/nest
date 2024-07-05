@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/husky.sh"
+
+
+echo ""
+echo "[34mStep 1: pnpm run lint[39m"
+
+pnpm run lint
+
+echo ""
+echo "[32m√[39m lint check passed 100%"
+
+echo ""
+echo "[34mStep 2: pnpm run typecheck[39m"
+
+pnpm run typecheck
+
+echo ""
+echo "[32m√[39m typecheck passed 100%"
+
+
+echo ""
+echo "[1m  ____                              _  [39m"
+echo "[1m / ___| _   _  ___ ___ ___  ___ ___| | [39m"
+echo "[1m \___ \| | | |/ __/ __/ _ \/ __/ __| | [39m"
+echo "[1m  ___) | |_| | (_| (_|  __/\__ \__ \_| [39m"
+echo "[1m |____/ \__,_|\___\___\___||___/___(_) [39m"
+echo ""
+
+echo "[32m√ Changes have been commited successfully![39m"
+echo ""
