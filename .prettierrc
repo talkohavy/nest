@@ -1,4 +1,24 @@
 {
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": true,
   "singleQuote": true,
-  "trailingComma": "all"
+  "bracketSpacing": true,
+  "trailingComma": "all",
+  "jsxSingleQuote": true,
+  "bracketSameLine": false,
+  "endOfLine": "lf",
+  "importOrder": ["antd/(.*)", "<THIRD_PARTY_MODULES>", "@/(.*)", "^[./]"],
+  "importOrderSeparation": true,
+  "proseWrap": "preserve",
+  "overrides": [
+    {
+      "files": ["*.mts", "*.cts", "*.ts", "*.tsx", "*.d.ts", "*.js", "*.jsx"],
+      "options": { "parser": "typescript" }
+    },
+    {
+      "files": ["*.json"],
+      "options": { "parser": "json" }
+    }
+  ]
 }
