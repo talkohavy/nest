@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
 import { DatabaseModule } from './database/database.module';
 import { loggerMiddleware } from './logger.middleware';
+import { UsersModule } from './users/users.module';
 
 // import { UsersController } from './users/users.controller';
 // import { User } from './users/entities/user.entity';

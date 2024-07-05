@@ -1,5 +1,10 @@
-import { Module, DynamicModule } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { Connection } from './connection.provider';
+
+function createDatabaseProviders(options: any, entities: any) {
+  console.log('props are:', { options, entities });
+  return [];
+}
 
 @Module({
   providers: [Connection],
@@ -11,13 +16,8 @@ export class DatabaseModule {
     return {
       // global:true, // <--- If you want to register a dynamic module in the global scope, set the global property to true. As mentioned before, making everything global is not a good design decision.
       module: DatabaseModule,
-      providers: providers,
+      providers,
       exports: providers,
     };
   }
-}
-
-function createDatabaseProviders(options: any, entities: any) {
-  console.log('props are:', { options, entities });
-  return [];
 }
