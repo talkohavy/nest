@@ -6,6 +6,11 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get('is-alive')
+  isAlive(): string {
+    return 'OK';
+  }
+
   @Get('error')
   async fetcherError() {
     throw new HttpException('This is my forbidden message', HttpStatus.FORBIDDEN);

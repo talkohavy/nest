@@ -1,4 +1,4 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from './../src/app.module';
@@ -15,5 +15,5 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => request(app.getHttpServer()).get('/').expect(200).expect('Hello World!'));
+  it('/users/is-alive (GET)', () => request(app.getHttpServer()).get('/users/is-alive').expect(200).expect('OK'));
 });
