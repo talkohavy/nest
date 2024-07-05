@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/husky.sh"
-
 
 echo ""
 echo "[34mStep 1: pnpm run lint[39m"
@@ -17,7 +15,6 @@ pnpm run typecheck
 
 echo ""
 echo "[32m√[39m typecheck passed 100%"
-
 
 echo ""
 echo "[1m  ____                              _  [39m"

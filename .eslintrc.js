@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['.eslintrc.js', 'dist'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
@@ -9,7 +10,6 @@ module.exports = {
   extends: ['plugin:ezlint/recommended', 'plugin:@typescript-eslint/recommended'],
   root: true,
   env: { node: true, jest: true },
-  ignorePatterns: ['.eslintrc.js'],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
