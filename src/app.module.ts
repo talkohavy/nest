@@ -1,7 +1,10 @@
+import { ConfigModule } from '@nestjs/config';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { DatabaseModule } from './database/database.module';
+import { UsersModule } from './modules/users/users.module';
+import { DatabaseModule } from './modules/database/database.module';
 import { loggerMiddleware } from './logger.middleware';
-import { UsersModule } from './users/users.module';
+import { getConfiguration } from './config';
+import { envVariablesSchema } from './config/validationSchema';
 
 // import { UsersController } from './users/users.controller';
 // import { User } from './users/entities/user.entity';
@@ -9,7 +12,18 @@ import { UsersModule } from './users/users.module';
 class User {}
 
 @Module({
-  imports: [UsersModule, DatabaseModule.forRoot([User])],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env', // <--- defaults to '.env'
+      ignoreEnvFile: false, // <--- defaults to false.
+      isGlobal: true, // <--- defaults to false
+      cache: true, // <--- defaults to false
+      load: [getConfiguration],
+      validationSchema: envVariablesSchema,
+    }),
+    UsersModule,
+    DatabaseModule.forRoot([User]),
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

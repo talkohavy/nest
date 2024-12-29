@@ -101,7 +101,7 @@
     "strictNullChecks": false, // When type checking, take into account 'null' and 'undefined'. ,
     "strictBindCallApply": false, // Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. ,
     "noFallthroughCasesInSwitch": false, // Enable error reporting for fallthrough cases in switch statements. ,
-    "noImplicitOverride": true, // Ensure overriding members in derived classes are marked with an override modifier.
+    "noImplicitOverride": false, // Ensure overriding members in derived classes are marked with an override modifier.
     // "strictFunctionTypes": true,                      // When assigning functions, check to ensure parameters and the return values are subtype-compatible.
     // "strictPropertyInitialization": true,             // Check for class properties that are declared but not set in the constructor.
     // "noImplicitThis": true,                           // Enable error reporting when 'this' is given the type 'any'.
