@@ -1,13 +1,13 @@
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './errorHandling/httpException.filter';
-import { ConfigService } from '@nestjs/config';
-import { handleCors } from './common/utils/handleCors';
-import { EnvOptions } from './config/types';
-import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
+import { AppModule } from './app.module';
+import { handleCors } from './common/utils/handleCors';
 import { getConfiguration } from './config';
+import { EnvOptions } from './config/types';
+import { HttpExceptionFilter } from './errorHandling/httpException.filter';
 
 // import { loggerMiddleware } from './logger.middleware';
 

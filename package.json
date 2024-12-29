@@ -4,6 +4,7 @@
   "description": "",
   "author": "talkohavy@gmail.com",
   "private": true,
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "nest build",

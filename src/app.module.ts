@@ -1,10 +1,10 @@
-import { ConfigModule } from '@nestjs/config';
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { UsersModule } from './modules/users/users.module';
-import { DatabaseModule } from './modules/database/database.module';
-import { loggerMiddleware } from './logger.middleware';
+import { ConfigModule } from '@nestjs/config';
 import { getConfiguration } from './config';
 import { envVariablesSchema } from './config/validationSchema';
+import { loggerMiddleware } from './logger.middleware';
+import { DatabaseModule } from './modules/database/database.module';
+import { UsersModule } from './modules/users/users.module';
 
 // import { UsersController } from './users/users.controller';
 // import { User } from './users/entities/user.entity';
