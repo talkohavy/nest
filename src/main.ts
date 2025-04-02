@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { handleCors } from './common/utils/handleCors';
-import { getConfiguration } from './config';
+import { configuration } from './config';
 import { EnvOptions } from './config/types';
 import { HttpExceptionFilter } from './errorHandling/httpException.filter';
 
@@ -27,7 +27,7 @@ async function bootstrap() {
   app.use(cookieParser());
   // app.useLogger(new LoggerService(configService, undefined)); // <--- retrieve the singleton instance of the LoggerService. When supplying a custom logger via app.useLogger(), it will actually be used by Nest internally. That means that our code remains implementation agnostic. That way, the following calls to this.logger.log() from MyService would result in calls to the "log" method from LoggerService instance.
 
-  const PORT = getConfiguration().port;
+  const PORT = configuration().port;
 
   app.getHttpAdapter().getInstance().disable('etag');
   app.getHttpAdapter().getInstance().disable('x-powered-by');
