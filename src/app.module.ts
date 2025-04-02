@@ -6,6 +6,10 @@ import { UsersModule } from './modules/users/users.module';
 import { CallContextMiddleware } from './modules/call-context.middleware';
 import { AuthMiddleware } from './common/middleware/auth/auth.middleware';
 import { SplitTokenToHeadersMiddleware } from './common/middleware/split-token-to-headers/split-token-to-headers.middleware';
+import { CallContextModule } from './modules/call-context.module';
+import { LoggerModule } from './modules/logger/logger.module';
+import { HealthCheckModule } from './modules/health-check';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { SplitTokenToHeadersMiddleware } from './common/middleware/split-token-t
       load: [configuration],
       validationSchema: envVariablesSchema,
     }),
+    CallContextModule.forRoot({ isGlobal: true }),
+    HttpModule,
+    HealthCheckModule,
+    LoggerModule,
     UsersModule,
   ],
 })
