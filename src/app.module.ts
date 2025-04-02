@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { getConfiguration } from './config';
+import { configuration } from './config';
 import { envVariablesSchema } from './config/validationSchema';
 import { loggerMiddleware } from './logger.middleware';
 import { DatabaseModule } from './modules/database/database.module';
@@ -18,7 +18,7 @@ class User {}
       ignoreEnvFile: false, // <--- defaults to false.
       isGlobal: true, // <--- defaults to false
       cache: true, // <--- defaults to false
-      load: [getConfiguration],
+      load: [configuration],
       validationSchema: envVariablesSchema,
     }),
     UsersModule,

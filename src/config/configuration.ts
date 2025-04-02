@@ -1,6 +1,6 @@
 import { Config, EnvOptions } from './types';
 
-export function getConfiguration(): Config {
+export function configuration(): Config {
   return {
     nodeEnv: (process.env.ENVIRONMENT ?? EnvOptions.Dev) as EnvOptions,
     isDev: !!process.env.IS_DEV,
