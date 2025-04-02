@@ -7,4 +7,8 @@ export type Config = {
   nodeEnv: EnvOptions;
   isDev: boolean;
   port: number;
+  cookieTokenName: string;
+  jwtEncryptionKey: string;
+  aesEncryptKey: string;
+  aesEncryptIV: string;
 };

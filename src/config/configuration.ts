@@ -5,5 +5,9 @@ export function configuration(): Config {
     nodeEnv: (process.env.ENVIRONMENT ?? EnvOptions.Dev) as EnvOptions,
     isDev: !!process.env.IS_DEV,
     port: parseInt(process.env.PORT, 10) || 8000,
+    cookieTokenName: 'luckylove',
+    aesEncryptIV: '',
+    aesEncryptKey: '',
+    jwtEncryptionKey: '',
   };
 }

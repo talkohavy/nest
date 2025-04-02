@@ -2,14 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from './config';
 import { envVariablesSchema } from './config/validationSchema';
-import { loggerMiddleware } from './logger.middleware';
-import { DatabaseModule } from './modules/database/database.module';
 import { UsersModule } from './modules/users/users.module';
-
-// import { UsersController } from './users/users.controller';
-// import { User } from './users/entities/user.entity';
-
-class User {}
 
 @Module({
   imports: [
@@ -22,26 +15,21 @@ class User {}
       validationSchema: envVariablesSchema,
     }),
     UsersModule,
-    DatabaseModule.forRoot([User]),
   ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     // You can even use async code here and await it!
-
     // Option 1: comma separated strings
-    consumer.apply(loggerMiddleware).forRoutes('users');
-
+    // consumer.apply(loggerMiddleware).forRoutes('users');
     // Option 2: comma separated RouteInfo's
     // consumer.apply(loggerMiddleware).forRoutes({
     //   path: '/users/login',
     //   method: RequestMethod.POST,
     //   // version: '1',
     // });
-
     // Option 3: passing a single Controller
     // consumer.apply(loggerMiddleware).forRoutes(UsersController);
-
     // Option 4: excluding routes
     // consumer
     //   .apply(loggerMiddleware)
