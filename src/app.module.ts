@@ -1,8 +1,11 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { configuration } from './config';
 import { envVariablesSchema } from './config/validationSchema';
 import { UsersModule } from './modules/users/users.module';
+import { CallContextMiddleware } from './modules/call-context.middleware';
+import { AuthMiddleware } from './common/middleware/auth/auth.middleware';
+import { SplitTokenToHeadersMiddleware } from './common/middleware/split-token-to-headers/split-token-to-headers.middleware';
 
 @Module({
   imports: [
@@ -18,26 +21,12 @@ import { UsersModule } from './modules/users/users.module';
   ],
 })
 export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    // You can even use async code here and await it!
-    // Option 1: comma separated strings
-    // consumer.apply(loggerMiddleware).forRoutes('users');
-    // Option 2: comma separated RouteInfo's
-    // consumer.apply(loggerMiddleware).forRoutes({
-    //   path: '/users/login',
-    //   method: RequestMethod.POST,
-    //   // version: '1',
-    // });
-    // Option 3: passing a single Controller
-    // consumer.apply(loggerMiddleware).forRoutes(UsersController);
-    // Option 4: excluding routes
-    // consumer
-    //   .apply(loggerMiddleware)
-    //   .exclude(
-    //     { path: 'cats', method: RequestMethod.GET },
-    //     { path: 'cats', method: RequestMethod.POST },
-    //     'cats/(.*)',
-    //   )
-    //   .forRoutes(UsersController);
+  configure(middlewareConsumer: MiddlewareConsumer) {
+    middlewareConsumer
+      .apply(CallContextMiddleware)
+      .exclude({ path: 'is-alive', method: RequestMethod.GET })
+      .forRoutes('*')
+      .apply(AuthMiddleware, SplitTokenToHeadersMiddleware)
+      .forRoutes('users');
   }
 }

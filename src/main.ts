@@ -7,8 +7,8 @@ import { AppModule } from './app.module';
 import { handleCors } from './common/utils/handleCors';
 import { configuration } from './config';
 import { EnvOptions } from './config/types';
-import { HttpExceptionFilter } from './errorHandling/httpException.filter';
 import { LoggerService } from './modules/logger/logger.service';
+import { HttpExceptionFilter } from './errorHandling/http-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
