@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NextFunction, Response } from 'express';
 import { CustomRequest } from '@src/common/types';
 import { LoggerService } from '@src/modules/logger/logger.service';
-import { CallContextService } from '@src/modules/call-context.service';
+import { CallContextService } from '@src/modules/call-context/call-context.service';
 import { Config } from '@src/config/types';
 
 // import { createDecipheriv } from 'crypto';
@@ -30,7 +30,7 @@ export class AuthMiddleware implements NestMiddleware {
 
       this.logger.info('trying to authenticate token inside cookie...');
 
-      const { cookieTokenName } = this.configService.get<Config>(null);
+      const { cookieTokenName } = this.configService.get<Config>('root');
 
       const token = req.cookies[cookieTokenName];
 
@@ -60,7 +60,7 @@ export class AuthMiddleware implements NestMiddleware {
   }
 
   private shouldSkipAuthentication() {
-    const isDev = this.configService.get<boolean>('isDev');
+    const isDev = this.configService.get<boolean>('root.isDev');
 
     return isDev;
   }

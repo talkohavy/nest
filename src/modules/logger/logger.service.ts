@@ -5,7 +5,8 @@ import { ContextKeys, SERVICE_NAME } from '@src/common/constants';
 import { LogLevelToNumber } from './logic/constants';
 import { convertErrorToObject } from './logic/utils/convertErrorToObject';
 import { EnrichLogMetadataProps, LogLevel, LoggerSettings } from './types';
-import { CallContextService } from '../call-context.service';
+import { CallContextService } from '../call-context/call-context.service';
+import { Config } from '@src/config/types';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService extends ConsoleLogger {
@@ -19,10 +20,11 @@ export class LoggerService extends ConsoleLogger {
   ) {
     super();
 
-    const loggerSettings = this.configService.get<LoggerSettings>('logSettings');
+    const { loggerSettings } = this.configService.get<Config>('root');
+
     this.globalLogLevel = LogLevelToNumber[loggerSettings?.logLevel ?? LogLevel.INFO];
 
-    this.loggerSettings = loggerSettings;
+    this.loggerSettings = loggerSettings as any;
     this.domain = SERVICE_NAME;
   }
 

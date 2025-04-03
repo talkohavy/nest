@@ -11,4 +11,11 @@ export type Config = {
   jwtEncryptionKey: string;
   aesEncryptKey: string;
   aesEncryptIV: string;
+  loggerSettings: {
+    logLevel: any;
+  };
+};
+
+export type RootConfig = {
+  root: Config;
 };

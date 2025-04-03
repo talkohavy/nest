@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { handleCors } from './common/utils/handleCors';
-import { configuration } from './config';
 import { EnvOptions } from './config/types';
 import { LoggerService } from './modules/logger/logger.service';
 import { HttpExceptionFilter } from './errorHandling/http-exception.filter';
@@ -19,7 +18,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
 
-  const nodeEnv = configService.get<EnvOptions>('nodeEnv');
+  const nodeEnv = configService.get<EnvOptions>('root.nodeEnv');
 
   app.enableCors({ origin: handleCors(nodeEnv), credentials: true });
   app.use(helmet());
@@ -28,7 +27,7 @@ async function bootstrap() {
   app.getHttpAdapter().getInstance().disable('etag');
   app.getHttpAdapter().getInstance().disable('x-powered-by');
 
-  const PORT = configuration().port;
+  const PORT = configService.get('root.port');
 
   app.useGlobalFilters(new HttpExceptionFilter()); // <--- WARNING! The useGlobalFilters() method does not set up filters for gateways or hybrid applications.
 
