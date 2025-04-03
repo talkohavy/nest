@@ -1,13 +1,22 @@
-export class GetUsersDto {}
+export type GetUsersDto = {};
 
-export class LoginDto {
+export type LoginDto = {
   email: string;
   password: string;
-}
+};
 
-export class RegisterDto {
+export type RegisterDto = {
   name: string;
   age: number;
-}
+};
 
-export class UpdateUserDto {}
+export type UpdateUserDto = {};
+
+export type User = {
+  id: string;
+  name: string;
+};
+
+export type SingleUserResponseDto = User;
+
+export type UsersResponseDto = Array<User>;

@@ -1,14 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
-
-// type IRepository = {
-//   name: string;
-// };
+import { GetUsersDto, LoginDto, RegisterDto, SingleUserResponseDto, UsersResponseDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersService {
-  // constructor(private readonly database: IRepository) {}
-
   async login(body: LoginDto): Promise<string> {
     console.log('body is:', body);
     return 'you are logged in!';
@@ -19,13 +13,16 @@ export class UsersService {
     return 'registered user successfully!';
   }
 
-  async getUsers(query: GetUsersDto): Promise<string> {
+  async getUsers(query: GetUsersDto): Promise<UsersResponseDto> {
     console.log('query is:', query);
-    return 'get users';
+    return [
+      { id: '1', name: 'tal' },
+      { id: '2', name: 'daniel' },
+    ];
   }
 
-  async getUserById(id: string): Promise<string> {
+  async getUserById(id: string): Promise<SingleUserResponseDto> {
     console.log('id is:', id);
-    return 'get user by id';
+    return { id: '1', name: 'tal' };
   }
 }

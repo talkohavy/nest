@@ -1,5 +1,12 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
-import { GetUsersDto, LoginDto, RegisterDto, UpdateUserDto } from './dto/users.dto';
+import {
+  GetUsersDto,
+  LoginDto,
+  RegisterDto,
+  SingleUserResponseDto,
+  UpdateUserDto,
+  UsersResponseDto,
+} from './dto/users.dto';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -17,7 +24,7 @@ export class UsersController {
   }
 
   @Get()
-  async getUsers(@Query() query: GetUsersDto): Promise<string> {
+  async getUsers(@Query() query: GetUsersDto): Promise<UsersResponseDto> {
     const response = await this.usersService.getUsers(query);
 
     return response;
@@ -38,7 +45,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: string): Promise<string> {
+  async getUserById(@Param('id') id: string): Promise<SingleUserResponseDto> {
     const response = await this.usersService.getUserById(id);
 
     return response;
