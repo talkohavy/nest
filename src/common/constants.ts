@@ -1,3 +1,5 @@
+import { INCOMING_REQUEST_HEADERS } from './headers';
+
 export const SERVICE_NAME = 'BACKEND';
 
 enum AuthHeaders {
@@ -18,7 +20,7 @@ export const ContextKeys = {
   Url: 'url',
   Path: 'path',
   Query: 'query',
-  RequestId: 'x-request-id',
-  XBrowserId: 'x-browser-id',
-  XTabId: 'x-tab-id',
+  RequestId: INCOMING_REQUEST_HEADERS.X_REQUEST_ID,
+  XBrowserId: INCOMING_REQUEST_HEADERS.X_BROWSER_ID,
+  XTabId: INCOMING_REQUEST_HEADERS.X_TAB_ID,
 };

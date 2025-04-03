@@ -15,11 +15,11 @@ export class CallContextMiddleware implements NestMiddleware {
     const { method, query, url, originalUrl, path } = req;
 
     this.callContextService.register();
-    const requestId = req.headers[INCOMING_REQUEST_HEADERS.CU_REQUEST_ID] as string;
+    const requestId = req.headers[INCOMING_REQUEST_HEADERS.X_REQUEST_ID] as string;
     const xBrowserId = req.headers[INCOMING_REQUEST_HEADERS.X_BROWSER_ID] as string;
     const xTabId = req.headers[INCOMING_REQUEST_HEADERS.X_TAB_ID] as string;
 
-    if (!requestId) throw new BadRequestException(`Missing ${INCOMING_REQUEST_HEADERS.CU_REQUEST_ID} header`);
+    if (!requestId) throw new BadRequestException(`Missing ${INCOMING_REQUEST_HEADERS.X_REQUEST_ID} header`);
 
     this.callContextService.set(ContextKeys.RequestId, requestId);
     this.callContextService.set(ContextKeys.XBrowserId, xBrowserId);
