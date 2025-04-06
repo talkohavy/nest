@@ -1,5 +1,5 @@
-import { AsyncLocalStorage } from 'async_hooks';
 import { DynamicModule, Global, Module } from '@nestjs/common';
+import { AsyncLocalStorage } from 'async_hooks';
 import { CallContextService } from './call-context.service';
 
 interface CallContextModuleOptions {

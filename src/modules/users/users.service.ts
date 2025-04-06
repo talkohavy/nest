@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
-import { Sequelize } from 'sequelize';
 import { InjectModel } from '@nestjs/sequelize';
+import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
 import { User } from './user.model';
 
 @Injectable()

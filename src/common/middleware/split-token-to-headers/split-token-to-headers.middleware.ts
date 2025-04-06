@@ -1,9 +1,9 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { NextFunction, Response } from 'express';
 import { CustomRequest } from '@src/common/types.js';
 import { LoggerService } from '@src/modules/logger/logger.service.js';
-import { splitTokenToHeaders } from './logic/utils/splitTokenToHeaders';
+import { NextFunction, Response } from 'express';
 import { filterIncomingHeaders } from './logic/utils/filterIncomingHeaders';
+import { splitTokenToHeaders } from './logic/utils/splitTokenToHeaders';
 
 @Injectable()
 export class SplitTokenToHeadersMiddleware implements NestMiddleware {

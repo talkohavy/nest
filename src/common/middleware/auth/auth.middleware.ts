@@ -1,10 +1,10 @@
 import { Injectable, NestMiddleware, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NextFunction, Response } from 'express';
 import { CustomRequest } from '@src/common/types';
-import { LoggerService } from '@src/modules/logger/logger.service';
-import { CallContextService } from '@src/modules/call-context/call-context.service';
 import { Config } from '@src/config/types';
+import { CallContextService } from '@src/modules/call-context/call-context.service';
+import { LoggerService } from '@src/modules/logger/logger.service';
+import { NextFunction, Response } from 'express';
 
 // import { createDecipheriv } from 'crypto';
 // import { JwtPayload, verify as verifyJwt } from 'jsonwebtoken';
@@ -69,7 +69,7 @@ export class AuthMiddleware implements NestMiddleware {
     req.authToken = authTokenObj;
   }
 
-  private async validateToken(token: string): Promise<any> {
+  private async validateToken(_token: string): Promise<any> {
     return {
       isValid: true,
       data: {

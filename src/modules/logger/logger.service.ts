@@ -1,12 +1,11 @@
 import { ConsoleLogger, Injectable, Scope } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContextKeys, SERVICE_NAME } from '@src/common/constants';
-
+import { Config } from '@src/config/types';
+import { CallContextService } from '../call-context/call-context.service';
 import { LogLevelToNumber } from './logic/constants';
 import { convertErrorToObject } from './logic/utils/convertErrorToObject';
 import { EnrichLogMetadataProps, LogLevel, LoggerSettings } from './types';
-import { CallContextService } from '../call-context/call-context.service';
-import { Config } from '@src/config/types';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LoggerService extends ConsoleLogger {

@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NestMiddleware } from '@nestjs/common';
+import { ContextKeys } from '@src/common/constants';
+import { INCOMING_REQUEST_HEADERS } from '@src/common/headers';
+import { CustomRequest } from '@src/common/types';
 import { NextFunction, Response } from 'express';
 import { CallContextService } from './call-context.service';
-import { CustomRequest } from '@src/common/types';
-import { INCOMING_REQUEST_HEADERS } from '@src/common/headers';
-import { ContextKeys } from '@src/common/constants';
 
 @Injectable()
 export class CallContextMiddleware implements NestMiddleware {

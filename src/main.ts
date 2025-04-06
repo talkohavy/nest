@@ -6,8 +6,8 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { handleCors } from './common/utils/handleCors';
 import { EnvOptions } from './config/types';
-import { LoggerService } from './modules/logger/logger.service';
 import { HttpExceptionFilter } from './errorHandling/http-exception.filter';
+import { LoggerService } from './modules/logger/logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
