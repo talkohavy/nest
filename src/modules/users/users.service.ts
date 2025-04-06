@@ -19,8 +19,6 @@ export class UsersService {
       throw new NotFoundException('Invalid credentials');
     }
 
-    console.log('body is:', body);
-    console.log('user is:', user);
     return 'you are logged in!';
   }
 

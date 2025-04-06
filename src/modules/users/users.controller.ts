@@ -19,8 +19,6 @@ export class UsersController {
   async register(@Body() body: RegisterDto, @Res() res: Response): Promise<Response> {
     const user = await this.usersService.register(body);
 
-    res.cookie('user_token', user.id, { httpOnly: true });
-
     return res.status(201).json(user);
   }
 
