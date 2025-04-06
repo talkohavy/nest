@@ -1,34 +1,12 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
-import {
-  GetUsersDto,
-  LoginDto,
-  RegisterDto,
-  SingleUserResponseDto,
-  UpdateUserDto,
-  UsersResponseDto,
-} from './dto/users.dto';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Res } from '@nestjs/common';
+import { GetUsersDto, LoginDto, RegisterDto } from './dto/users.dto';
 import { UsersService } from './users.service';
+import { User } from './user.model';
+import { Response } from 'express';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  @Get('is-alive')
-  isAlive(): string {
-    return 'OK';
-  }
-
-  @Get('error')
-  async fetcherError() {
-    throw new HttpException('This is my forbidden message', HttpStatus.FORBIDDEN);
-  }
-
-  @Get()
-  async getUsers(@Query() query: GetUsersDto): Promise<UsersResponseDto> {
-    const response = await this.usersService.getUsers(query);
-
-    return response;
-  }
 
   @Post('login')
   async login(@Body() body: LoginDto): Promise<string> {
@@ -38,27 +16,36 @@ export class UsersController {
   }
 
   @Post('register')
-  async register(@Body() body: RegisterDto): Promise<string> {
-    const response = await this.usersService.register(body);
+  async register(@Body() body: RegisterDto, @Res() res: Response): Promise<Response> {
+    const user = await this.usersService.register(body);
+
+    res.cookie('user_token', user.id, { httpOnly: true });
+
+    return res.status(201).json(user);
+  }
+
+  @Get()
+  async getUsers(@Query() query: GetUsersDto): Promise<Array<User>> {
+    const response = await this.usersService.findAll(query);
 
     return response;
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: string): Promise<SingleUserResponseDto> {
-    const response = await this.usersService.getUserById(id);
+  async getUserById(@Param('id') id: string): Promise<User | null> {
+    const response = await this.usersService.findOne(id);
 
     return response;
   }
 
   @Put(':id')
-  async updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async updateUser(@Param('id') id: string, @Body() updateUserDto: User) {
     console.log('updateUserDto is:', updateUserDto);
     return `This action updates a user of id ${id}`;
   }
 
   @Delete(':id')
   async deleteUser(@Param('id') id: string) {
-    return `This action removes a user with an id of ${id}`;
+    await this.usersService.remove(id);
   }
 }
